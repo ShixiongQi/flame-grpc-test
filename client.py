@@ -1,11 +1,25 @@
 import grpc
+import argparse
 
 # import the generated classes
 import calculator_pb2
 import calculator_pb2_grpc
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--ip', action='store', type=str, default='localhost')
+parser.add_argument('-p', '--port', action='store', type=str, default='50051')
+parser.add_argument('-u', '--url', action='store', type=str)
+args = parser.parse_args()
+
+aggregator_url = 'http://flame-aggregator.flame.example.com'
+
 # open a gRPC channel
-channel = grpc.insecure_channel('localhost:50051')
+if args.number == '':
+	print("Creating gRPC channel without options")
+	channel = grpc.insecure_channel(f'{args.ip}:{args.port}')
+else:
+	print(f"Creating gRPC channel with customized authority header: {aggregator_url}")
+	channel = grpc.insecure_channel(f'{args.ip}:{args.port}', options=[(('grpc.default_authority', aggregator_url))])
 
 # create a stub (client)
 stub = calculator_pb2_grpc.CalculatorStub(channel)
