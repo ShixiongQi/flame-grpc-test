@@ -6,7 +6,7 @@ Contains a minimal working example for rolling gRPC in Python.
 
 ```shell
 git clone https://github.com/ShixiongQi/flame-grpc-test
-cd basic-grpc-python
+cd flame-grpc-test
 pip3 install -r requirements.txt
 python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. calculator.proto
 python3 server.py
