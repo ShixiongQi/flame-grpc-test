@@ -14,7 +14,7 @@ args = parser.parse_args()
 aggregator_url = 'http://flame-aggregator.flame.example.com'
 
 # open a gRPC channel
-if args.number == '':
+if args.url == '':
 	print("Creating gRPC channel without options")
 	channel = grpc.insecure_channel(f'{args.ip}:{args.port}')
 else:
