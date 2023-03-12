@@ -29,6 +29,7 @@ server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--port', action='store', type=str, default='10103')
+args = parser.parse_args()
 
 # use the generated function `add_CalculatorServicer_to_server`
 # to add the defined class to the created server
