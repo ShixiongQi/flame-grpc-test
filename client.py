@@ -11,7 +11,7 @@ parser.add_argument('-p', '--port', action='store', type=str, default='10103')
 parser.add_argument('-u', '--url', action='store', type=str)
 args = parser.parse_args()
 
-aggregator_url = 'http://flame-aggregator.flame.example.com'
+aggregator_url = 'flame-aggregator.flame.example.com'
 
 # open a gRPC channel
 if args.url == '':
