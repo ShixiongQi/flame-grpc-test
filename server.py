@@ -1,6 +1,7 @@
 import grpc
 from concurrent import futures
 import time
+import argparse
 
 # import the generated classes
 import calculator_pb2
@@ -25,14 +26,18 @@ class CalculatorServicer(calculator_pb2_grpc.CalculatorServicer):
 # create a gRPC server
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', '--port', action='store', type=str, default='10103')
+
 # use the generated function `add_CalculatorServicer_to_server`
 # to add the defined class to the created server
 calculator_pb2_grpc.add_CalculatorServicer_to_server(
         CalculatorServicer(), server)
 
-# listen on port 50051
-print('Starting server. Listening on port 50051.')
-server.add_insecure_port('[::]:50051')
+# listen on port 10103
+print(f'Starting server. Listening on port {args.port}.')
+server.add_insecure_port(f'[::]:{args.port}')
 server.start()
 
 # since server.start() will not block,

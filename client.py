@@ -7,7 +7,7 @@ import calculator_pb2_grpc
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--ip', action='store', type=str, default='localhost')
-parser.add_argument('-p', '--port', action='store', type=str, default='50051')
+parser.add_argument('-p', '--port', action='store', type=str, default='10103')
 parser.add_argument('-u', '--url', action='store', type=str)
 args = parser.parse_args()
 
